@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.2.32210.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReforgerServerApp", "ArmaReforgerServerTool\ReforgerServerApp.csproj", "{57B14DD9-F641-4987-AE66-387D1FC6E26B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{529D437B-D38B-489D-9259-13E4305956F8} = {529D437B-D38B-489D-9259-13E4305956F8}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReforgerServerApp.Core", "ReforgerServerApp.Core\ReforgerServerApp.Core.csproj", "{529D437B-D38B-489D-9259-13E4305956F8}"
 EndProject

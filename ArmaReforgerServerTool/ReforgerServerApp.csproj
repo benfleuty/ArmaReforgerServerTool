@@ -28,6 +28,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ReforgerServerApp.Core\ReforgerServerApp.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Components\AdvancedServerParameterBool.cs">
       <SubType>UserControl</SubType>
     </Compile>

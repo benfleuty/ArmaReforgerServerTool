@@ -11,7 +11,7 @@ using Serilog;
 using ReforgerServerApp.Utils;
 using System.Diagnostics;
 using System.IO.Compression;
-using System.Net;
+using ReforgerServerApp.Core;
 using System.Reflection;
 using System.Text.Json;
 using Microsoft.Win32;
