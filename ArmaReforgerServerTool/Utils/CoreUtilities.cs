@@ -74,25 +74,6 @@ namespace ReforgerServerApp.Utils
       return serializedJson;
     }
 
-    /// <summary>
-    /// Convenience method for retrieving a deserialized Server Config object from
-    /// JSON
-    /// </summary>
-    /// <param name="json">to deserialise</param>
-    /// <param name="converters">optional any custom converters to use</param>
-    /// <returns>'Root' object representing a server configuration</returns>
-    public static Root GetServerConfigFromJson(string json, params JsonConverter[] converters)
-    {
-      var options = new JsonSerializerOptions
-      {
-        WriteIndented = true
-      };
-      foreach (JsonConverter jc in converters)
-      {
-        options.Converters.Add(jc);
-      }
-      return JsonSerializer.Deserialize<Root>(json, options);
-    }
 
     /// <summary>
     /// Set supported platforms. There are multiple combinations of valid and invalid so we need to
