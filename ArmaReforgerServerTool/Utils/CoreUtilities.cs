@@ -35,7 +35,7 @@ namespace ReforgerServerApp.Utils
     /// </summary>
     /// <param name="list"></param>
     /// <returns>True if sorted, False if not</returns>
-    public static bool IsSorted(BindingList<Mod> list)
+    public static bool IsModListSorted(List<Mod> list)
     {
       for (int i = 0; i < list.Count - 1; i++)
       {
