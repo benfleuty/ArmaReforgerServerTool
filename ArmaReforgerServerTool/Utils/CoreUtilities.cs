@@ -50,11 +50,7 @@ namespace ReforgerServerApp.Utils
     /// <summary>
     /// Return string representation of DateTime.Now
     /// </summary>
-    /// <returns></returns>
-    public static string GetTimestamp()
-    {
-      return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-    }
+    public static string GetTimestamp() => DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
 
     /// <summary>
     /// Convenience method to return a formatted JSON string
