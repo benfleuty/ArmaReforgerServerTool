@@ -104,21 +104,6 @@ namespace ReforgerServerApp.Utils
     }
 
     /// <summary>
-    /// Convenience method for Displaying an Error Messagebox
-    /// </summary>
-    /// <param name="genMsg">General info about the error</param>
-    /// <param name="errMsg">detailed message from the exception, if applicable</param>
-    public static void DisplayErrorMessage(string genMsg, string errMsg)
-    {
-      Log.Error("An error prompt was displayed: {genMsg} - {errMsg}", genMsg, errMsg);
-      MessageBox.Show(
-          $"{genMsg}\r\n\r\n" +
-          $"Detail: {errMsg}\r\n\r\n" +
-          $"Include the detail above in your bug reports.",
-          Constants.ERROR_MESSAGEBOX_TITLE_STR);
-    }
-
-    /// <summary>
     /// Convenience method for Displaying a Confirmation Messagebox 
     /// (message box with OK and Cancel buttons, or Yes and No if useYesOrNo = true)
     /// </summary>
