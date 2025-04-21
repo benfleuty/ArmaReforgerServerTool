@@ -1,9 +1,9 @@
 /******************************************************************************
  * File Name:    Utilities.cs
  * Project:      Arma Reforger Dedicated Server Tool for Windows
- * Description:  Static class containing utility methods for 
+ * Description:  Static class containing utility methods for
  *               performing various simple tasks
- * 
+ *
  * Author:       Bradley Newman
  ******************************************************************************/
 
@@ -59,15 +59,15 @@ namespace ReforgerServerApp.Utils
     public static void DisplayErrorMessage(string genMsg, string errMsg)
     {
       Log.Error("An error prompt was displayed: {genMsg} - {errMsg}", genMsg, errMsg);
-      MessageBox.Show(
+      string msg =
           $"{genMsg}" + Environment.NewLine +
           $"Detail: {errMsg}" + Environment.NewLine +
-          $"Include the detail above in your bug reports.",
-          Constants.ERROR_MESSAGEBOX_TITLE_STR);
+          "Include the detail above in your bug reports.",
+      MessageBox.Show(msg, Constants.ERROR_MESSAGEBOX_TITLE_STR);
     }
 
     /// <summary>
-    /// Convenience method for Displaying a Confirmation Messagebox 
+    /// Convenience method for Displaying a Confirmation Messagebox
     /// (message box with OK and Cancel buttons, or Yes and No if useYesOrNo = true)
     /// </summary>
     /// <param name="msg">Warning message to display</param>
@@ -76,7 +76,7 @@ namespace ReforgerServerApp.Utils
     public static bool DisplayConfirmationMessage(string msg, bool useYesOrNo = false)
     {
       MessageBoxButtons buttons = useYesOrNo ? MessageBoxButtons.YesNo : MessageBoxButtons.OKCancel;
-      DialogResult result = MessageBox.Show($"{msg}", Constants.WARN_MESSAGEBOX_TITLE_STR, buttons);
+      DialogResult result = MessageBox.Show(msg, Constants.WARN_MESSAGEBOX_TITLE_STR, buttons);
       return result == DialogResult.OK || result == DialogResult.Yes;
     }
   }
