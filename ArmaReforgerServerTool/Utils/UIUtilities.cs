@@ -29,8 +29,8 @@ namespace ReforgerServerApp.Utils
     {
       Log.Error("An error prompt was displayed: {genMsg} - {errMsg}", genMsg, errMsg);
       MessageBox.Show(
-          $"{genMsg}\r\n\r\n" +
-          $"Detail: {errMsg}\r\n\r\n" +
+          $"{genMsg}" + Environment.NewLine +
+          $"Detail: {errMsg}" + Environment.NewLine +
           $"Include the detail above in your bug reports.",
           Constants.ERROR_MESSAGEBOX_TITLE_STR);
     }
