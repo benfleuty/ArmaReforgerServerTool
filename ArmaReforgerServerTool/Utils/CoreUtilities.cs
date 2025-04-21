@@ -104,23 +104,6 @@ namespace ReforgerServerApp.Utils
     }
 
     /// <summary>
-    /// Convenience method for Displaying a Confirmation Messagebox 
-    /// (message box with OK and Cancel buttons, or Yes and No if useYesOrNo = true)
-    /// </summary>
-    /// <param name="msg">Warning message to display</param>
-    /// <param name="useYesOrNo">Use Yes or No buttons instead of OK and Cancel</param>
-    /// <returns>True if the following logic should continue, False otherwise</returns>
-    public static bool DisplayConfirmationMessage(string msg, bool useYesOrNo = false)
-    {
-      DialogResult result =
-          MessageBox.Show($"{msg}",
-          Constants.WARN_MESSAGEBOX_TITLE_STR,
-          useYesOrNo ? MessageBoxButtons.YesNo : MessageBoxButtons.OKCancel);
-
-      return result == DialogResult.OK || result == DialogResult.Yes;
-    }
-
-    /// <summary>
     /// Convert a given string to an Enum T
     /// </summary>
     /// <typeparam name="T">Enum type to convert to</typeparam>
