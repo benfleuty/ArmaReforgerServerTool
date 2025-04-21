@@ -44,11 +44,8 @@ namespace ReforgerServerApp.Utils
     /// <returns>True if the following logic should continue, False otherwise</returns>
     public static bool DisplayConfirmationMessage(string msg, bool useYesOrNo = false)
     {
-      DialogResult result =
-          MessageBox.Show($"{msg}",
-          Constants.WARN_MESSAGEBOX_TITLE_STR,
-          useYesOrNo ? MessageBoxButtons.YesNo : MessageBoxButtons.OKCancel);
-
+      MessageBoxButtons buttons = useYesOrNo ? MessageBoxButtons.YesNo : MessageBoxButtons.OKCancel;
+      DialogResult result = MessageBox.Show($"{msg}", Constants.WARN_MESSAGEBOX_TITLE_STR, buttons);
       return result == DialogResult.OK || result == DialogResult.Yes;
     }
   }
