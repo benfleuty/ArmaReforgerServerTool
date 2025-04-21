@@ -84,12 +84,12 @@ namespace ReforgerServerApp.Managers
         Log.Error("NetworkManager - Failed to configure UPnP: {msg}", ex.Message);
         if (ex.GetType() == typeof(NatDeviceNotFoundException))
         {
-          Utilities.DisplayErrorMessage("Failed to start server with UPnP", "No UPnP NAT device was found. UPnP is not supported on your system.");
+          UIUtilities.DisplayErrorMessage("Failed to start server with UPnP", "No UPnP NAT device was found. UPnP is not supported on your system.");
         }
 
         if (ex.GetType() == typeof(SocketException))
         {
-          Utilities.DisplayErrorMessage("Failed to start server with UPnP", "Failed to start the server with UPnP. You may need to turn it off.");
+          UIUtilities.DisplayErrorMessage("Failed to start server with UPnP", "Failed to start the server with UPnP. You may need to turn it off.");
         }
       }
     }

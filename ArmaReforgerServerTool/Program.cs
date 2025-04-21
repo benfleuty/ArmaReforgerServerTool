@@ -30,7 +30,7 @@ namespace ReforgerServerApp
       }
       catch (Exception ex)
       {
-        Utilities.DisplayErrorMessage("Failed to configure logger.", $"Logger configuration failed which prevented the program from launching.\n{ex.Message}");
+        UIUtilities.DisplayErrorMessage("Failed to configure logger.", $"Logger configuration failed which prevented the program from launching.\n{ex.Message}");
         Application.Exit(); // We cannot continue, exit gracefully
         return;
       }
@@ -43,7 +43,7 @@ namespace ReforgerServerApp
       }
       catch (Exception ex)
       {
-        Utilities.DisplayErrorMessage("Application failed.", $"An uncaught exception occurred.\n\n" +
+        UIUtilities.DisplayErrorMessage("Application failed.", $"An uncaught exception occurred.\n\n" +
             $"\"{ex.Message}\"");
         Log.Fatal(ex, "Application failed.");
       }

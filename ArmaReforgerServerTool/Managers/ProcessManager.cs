@@ -99,19 +99,19 @@ namespace ReforgerServerApp.Managers
           m_serverProcess.CancelOutputRead();
           m_serverProcess.CancelErrorRead();
 
-          SteamCmdLogEventArgs steamCmd = new($"{Utilities.GetTimestamp()}: User stopped server.{Environment.NewLine}");
+          SteamCmdLogEventArgs steamCmd = new($"{CoreUtilities.GetTimestamp()}: User stopped server.{Environment.NewLine}");
           if (triggeredByAutoRestart)
           {
-            steamCmd = new($"{Utilities.GetTimestamp()}: Automatically stopped server.{Environment.NewLine}");
+            steamCmd = new($"{CoreUtilities.GetTimestamp()}: Automatically stopped server.{Environment.NewLine}");
           }
           OnUpdateSteamCmdLogEvent(steamCmd);
 
           if (NetworkManager.GetInstance().useUPnP)
           {
-            steamCmd = new($"{Utilities.GetTimestamp()}: Removing UPnP port mappings...{Environment.NewLine}");
+            steamCmd = new($"{CoreUtilities.GetTimestamp()}: Removing UPnP port mappings...{Environment.NewLine}");
             OnUpdateSteamCmdLogEvent(steamCmd);
-            await NetworkManager.GetInstance().RemovePortMappings(Utilities.GetPortMappingsFromServerConfig());
-            steamCmd = new($"{Utilities.GetTimestamp()}: UPnP port mappings removed.{Environment.NewLine}");
+            await NetworkManager.GetInstance().RemovePortMappings(CoreUtilities.GetPortMappingsFromServerConfig());
+            steamCmd = new($"{CoreUtilities.GetTimestamp()}: UPnP port mappings removed.{Environment.NewLine}");
             OnUpdateSteamCmdLogEvent(steamCmd);
           }
 
@@ -130,7 +130,7 @@ namespace ReforgerServerApp.Managers
         }
         catch (Exception ex)
         {
-          Utilities.DisplayErrorMessage("Error", ex.Message);
+          UIUtilities.DisplayErrorMessage("Error", ex.Message);
         }
       }
       else
@@ -154,30 +154,30 @@ namespace ReforgerServerApp.Managers
         };
         OnUpdateGuiControlsEvent(guiModel);
 
-        SteamCmdLogEventArgs steamCmd = new($"{Utilities.GetTimestamp()}: User started server.{Environment.NewLine}");
+        SteamCmdLogEventArgs steamCmd = new($"{CoreUtilities.GetTimestamp()}: User started server.{Environment.NewLine}");
 
         if (triggeredByAutoRestart)
         {
-          steamCmd = new($"{Utilities.GetTimestamp()}: Automatically restarted server.{Environment.NewLine}");
+          steamCmd = new($"{CoreUtilities.GetTimestamp()}: Automatically restarted server.{Environment.NewLine}");
         }
 
         OnUpdateSteamCmdLogEvent(steamCmd);
 
-        SteamCmdLogEventArgs dling = new($"{Utilities.GetTimestamp()}: Downloading / updating Arma Reforger dedicated server files. Please be patient...{Environment.NewLine}");
+        SteamCmdLogEventArgs dling = new($"{CoreUtilities.GetTimestamp()}: Downloading / updating Arma Reforger dedicated server files. Please be patient...{Environment.NewLine}");
         OnUpdateSteamCmdLogEvent(dling);
 
         if (NetworkManager.GetInstance().useUPnP)
         {
-          steamCmd = new($"{Utilities.GetTimestamp()}: Server is using UPnP, adding UPnP port mappings...{Environment.NewLine}");
+          steamCmd = new($"{CoreUtilities.GetTimestamp()}: Server is using UPnP, adding UPnP port mappings...{Environment.NewLine}");
           OnUpdateSteamCmdLogEvent(steamCmd);
-          await NetworkManager.GetInstance().ConfigurePortMappings(Utilities.GetPortMappingsFromServerConfig());
-          steamCmd = new($"{Utilities.GetTimestamp()}: UPnP port mappings added.{Environment.NewLine}");
+          await NetworkManager.GetInstance().ConfigurePortMappings(CoreUtilities.GetPortMappingsFromServerConfig());
+          steamCmd = new($"{CoreUtilities.GetTimestamp()}: UPnP port mappings added.{Environment.NewLine}");
           OnUpdateSteamCmdLogEvent(steamCmd);
         }
 
         if (ConfigurationManager.GetInstance().useExperimentalServer)
         {
-          SteamCmdLogEventArgs exp = new($"{Utilities.GetTimestamp()}: Server is using Experimental Branch. " +
+          SteamCmdLogEventArgs exp = new($"{CoreUtilities.GetTimestamp()}: Server is using Experimental Branch. " +
               $"It is important to note that your server may not work as intended as the experimental branch frequently contains breaking changes.{Environment.NewLine}");
           OnUpdateSteamCmdLogEvent(exp);
         }
@@ -225,15 +225,15 @@ namespace ReforgerServerApp.Managers
           m_serverProcess.CancelErrorRead();
 
           Log.Information("ProcessManager - Automatically stopped server.");
-          steamCmd = new($"{Utilities.GetTimestamp()}: Automatically stopped server.{Environment.NewLine}");
+          steamCmd = new($"{CoreUtilities.GetTimestamp()}: Automatically stopped server.{Environment.NewLine}");
           OnUpdateSteamCmdLogEvent(steamCmd);
 
           if (NetworkManager.GetInstance().useUPnP)
           {
-            steamCmd = new($"{Utilities.GetTimestamp()}: Removing UPnP port mappings...{Environment.NewLine}");
+            steamCmd = new($"{CoreUtilities.GetTimestamp()}: Removing UPnP port mappings...{Environment.NewLine}");
             OnUpdateSteamCmdLogEvent(steamCmd);
-            await NetworkManager.GetInstance().RemovePortMappings(Utilities.GetPortMappingsFromServerConfig());
-            steamCmd = new($"{Utilities.GetTimestamp()}: UPnP port mappings removed.{Environment.NewLine}");
+            await NetworkManager.GetInstance().RemovePortMappings(CoreUtilities.GetPortMappingsFromServerConfig());
+            steamCmd = new($"{CoreUtilities.GetTimestamp()}: UPnP port mappings removed.{Environment.NewLine}");
             OnUpdateSteamCmdLogEvent(steamCmd);
           }
 
@@ -242,7 +242,7 @@ namespace ReforgerServerApp.Managers
         }
         catch (Exception ex)
         {
-          Utilities.DisplayErrorMessage("Error", ex.Message);
+          UIUtilities.DisplayErrorMessage("Error", ex.Message);
         }
       }
 
@@ -263,19 +263,19 @@ namespace ReforgerServerApp.Managers
       };
       OnUpdateGuiControlsEvent(guiModel);
 
-      steamCmd = new($"{Utilities.GetTimestamp()}: Automatically started server.{Environment.NewLine}");
+      steamCmd = new($"{CoreUtilities.GetTimestamp()}: Automatically started server.{Environment.NewLine}");
       Log.Information("ProcessManager - Automatically (re)started server.");
       OnUpdateSteamCmdLogEvent(steamCmd);
 
-      SteamCmdLogEventArgs dling = new($"{Utilities.GetTimestamp()}: Downloading / updating Arma Reforger dedicated server files. Please be patient...{Environment.NewLine}");
+      SteamCmdLogEventArgs dling = new($"{CoreUtilities.GetTimestamp()}: Downloading / updating Arma Reforger dedicated server files. Please be patient...{Environment.NewLine}");
       OnUpdateSteamCmdLogEvent(dling);
 
       if (NetworkManager.GetInstance().useUPnP)
       {
-        steamCmd = new($"{Utilities.GetTimestamp()}: Server is using UPnP, adding UPnP port mappings...{Environment.NewLine}");
+        steamCmd = new($"{CoreUtilities.GetTimestamp()}: Server is using UPnP, adding UPnP port mappings...{Environment.NewLine}");
         OnUpdateSteamCmdLogEvent(steamCmd);
-        await NetworkManager.GetInstance().ConfigurePortMappings(Utilities.GetPortMappingsFromServerConfig());
-        steamCmd = new($"{Utilities.GetTimestamp()}: UPnP port mappings added.{Environment.NewLine}");
+        await NetworkManager.GetInstance().ConfigurePortMappings(CoreUtilities.GetPortMappingsFromServerConfig());
+        steamCmd = new($"{CoreUtilities.GetTimestamp()}: UPnP port mappings added.{Environment.NewLine}");
         OnUpdateSteamCmdLogEvent(steamCmd);
       }
 
@@ -291,12 +291,12 @@ namespace ReforgerServerApp.Managers
     {
       if (!string.IsNullOrEmpty(e.Data))
       {
-        SteamCmdLogEventArgs steamCmd = new($"{Utilities.GetTimestamp()}: {e.Data}{Environment.NewLine}");
+        SteamCmdLogEventArgs steamCmd = new($"{CoreUtilities.GetTimestamp()}: {e.Data}{Environment.NewLine}");
         OnUpdateSteamCmdLogEvent(steamCmd);
         // Kill the server if it fails to start correctly.
         if (e.Data.Contains("Unable to Initialize"))
         {
-          steamCmd = new($"{Utilities.GetTimestamp()}: System stopped server due to an error.{Environment.NewLine}");
+          steamCmd = new($"{CoreUtilities.GetTimestamp()}: System stopped server due to an error.{Environment.NewLine}");
           Log.Information("ProcessManager - System stopped server due to an error.");
           OnUpdateSteamCmdLogEvent(steamCmd);
           m_serverProcess.OutputDataReceived -= SteamCmdDataReceived;
@@ -322,7 +322,7 @@ namespace ReforgerServerApp.Managers
         {
           if (ConfigurationManager.GetInstance().autoRestartOnCrash)
           {
-            steamCmd = new($"{Utilities.GetTimestamp()}: Game destroyed detected. System attempting to restart server...{Environment.NewLine}");
+            steamCmd = new($"{CoreUtilities.GetTimestamp()}: Game destroyed detected. System attempting to restart server...{Environment.NewLine}");
             OnUpdateSteamCmdLogEvent(steamCmd);
             Log.Information("ProcessManager - Game destroyed detected. Attempting to restart server...");
 
@@ -420,7 +420,7 @@ namespace ReforgerServerApp.Managers
           StartInfo = serverStartInfo
         };
 
-        SteamCmdLogEventArgs starting = new($"{Utilities.GetTimestamp()}: Download / update complete. Starting the dedicated server...{Environment.NewLine}");
+        SteamCmdLogEventArgs starting = new($"{CoreUtilities.GetTimestamp()}: Download / update complete. Starting the dedicated server...{Environment.NewLine}");
         OnUpdateSteamCmdLogEvent(starting);
 
         m_serverProcess.OutputDataReceived += SteamCmdDataReceived;

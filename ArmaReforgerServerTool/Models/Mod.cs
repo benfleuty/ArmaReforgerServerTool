@@ -135,7 +135,7 @@ namespace ReforgerServerApp
         }
         catch (Exception ex)
         {
-          Utilities.DisplayErrorMessage("Unable to fetch Scenario IDs from Arma Reforger Workshop, please check your internet connection.", ex.Message);
+          UIUtilities.DisplayErrorMessage("Unable to fetch Scenario IDs from Arma Reforger Workshop, please check your internet connection.", ex.Message);
         }
       }
       return scenarios;

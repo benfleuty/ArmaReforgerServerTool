@@ -243,7 +243,7 @@ namespace ReforgerServerApp
         Mod m = (Mod)GetEnabledModsList().SelectedItem;
 
         // Set move backward to true as moving position 'up' actually means moving the mod earlier in the list
-        Utilities.MoveItem(ConfigurationManager.GetInstance().GetEnabledMods(), m, true);
+        UIUtilities.MoveItem(ConfigurationManager.GetInstance().GetEnabledMods(), m, true);
 
         // Re-select the mod so we can do multiple moves in a row if we like
         GetEnabledModsList().SelectedItems.Clear();
@@ -263,7 +263,7 @@ namespace ReforgerServerApp
         Mod m = (Mod)GetEnabledModsList().SelectedItem;
 
         // Move forward is the default, this will mean moving the mod later in the list
-        Utilities.MoveItem(ConfigurationManager.GetInstance().GetEnabledMods(), m);
+        UIUtilities.MoveItem(ConfigurationManager.GetInstance().GetEnabledMods(), m);
 
         // Re-select the mod so we can do multiple moves in a row if we like
         GetEnabledModsList().SelectedItems.Clear();
@@ -1103,10 +1103,10 @@ namespace ReforgerServerApp
 
       if (ConfigurationManager.GetInstance().noBackend)
       {
-        bool enableNoBackend = Utilities.DisplayConfirmationMessage("Setting your server to use No Backend means it will not be visible in the server browser.\r\n" +
-            "Mods not already downloaded will not work as they will not be fetched from the Workshop.\r\n" +
-            "You must provide a valid Public Address in the Server Configuration section. It cannot be empty.\r\n" +
-            "Clients will only be able to connect via the '-client' launch argument, and it is their responsibility to acquire required mods.\r\n\r\n" +
+        bool enableNoBackend = UIUtilities.DisplayConfirmationMessage("Setting your server to use No Backend means it will not be visible in the server browser." + Environment.NewLine +
+            "Mods not already downloaded will not work as they will not be fetched from the Workshop." + Environment.NewLine +
+            "You must provide a valid Public Address in the Server Configuration section. It cannot be empty." + Environment.NewLine +
+            "Clients will only be able to connect via the '-client' launch argument, and it is their responsibility to acquire required mods." + Environment.NewLine +
             "Continue?", true);
 
         if (!enableNoBackend)

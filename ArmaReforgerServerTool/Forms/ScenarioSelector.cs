@@ -49,7 +49,7 @@ namespace ReforgerServerApp
 
       catch (Exception ex)
       {
-        Utilities.DisplayErrorMessage("An error occurred while loading scenarios.", ex.Message);
+        UIUtilities.DisplayErrorMessage("An error occurred while loading scenarios.", ex.Message);
       }
     }
 
@@ -85,7 +85,7 @@ namespace ReforgerServerApp
         }
         catch (Exception ex)
         {
-          Utilities.DisplayErrorMessage("Scenario Fetch thread encountered an error.", ex.Message);
+          UIUtilities.DisplayErrorMessage("Scenario Fetch thread encountered an error.", ex.Message);
         }
       }
     }

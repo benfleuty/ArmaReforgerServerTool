@@ -32,7 +32,7 @@ namespace ReforgerServerApp.Managers
       bool modDatabaseExists = File.Exists(ToolPropertiesManager.GetInstance().GetToolProperties().modDatabaseFile);
 
       if (!modDatabaseExists && File.Exists(m_legacyModDatabaseFile) &&
-          Utilities.DisplayConfirmationMessage(Constants.MIGRATE_LEGACY_MOD_DB_PROMPT_STR, true))
+          UIUtilities.DisplayConfirmationMessage(Constants.MIGRATE_LEGACY_MOD_DB_PROMPT_STR, true))
       {
         MigrateLegacyModDatabase(m_legacyModDatabaseFile);
       }
@@ -81,7 +81,7 @@ namespace ReforgerServerApp.Managers
 
       File.WriteAllText(
           ToolPropertiesManager.GetInstance().GetToolProperties().modDatabaseFile,
-          Utilities.GetFormattedJsonString(combined, new JsonUtils.ModConverter())
+          CoreUtilities.GetFormattedJsonString(combined, new JsonUtils.ModConverter())
       );
     }
 
@@ -156,7 +156,7 @@ namespace ReforgerServerApp.Managers
       catch (Exception ex)
       {
         Log.Error(ex, "Failed to save config to {path}", path);
-        Utilities.DisplayErrorMessage($"An error occurred while trying to write server configuration.", ex.Message);
+        UIUtilities.DisplayErrorMessage($"An error occurred while trying to write server configuration.", ex.Message);
         return false;
       }
     }
@@ -195,7 +195,7 @@ namespace ReforgerServerApp.Managers
 
         if (splitMod.Length < 2)
         {
-          Utilities.DisplayErrorMessage("Importing legacy mods failed.", "At least one legacy mod was in an invalid format.");
+          UIUtilities.DisplayErrorMessage("Importing legacy mods failed.", "At least one legacy mod was in an invalid format.");
           return false;
         }
 
@@ -261,7 +261,7 @@ namespace ReforgerServerApp.Managers
       }
       catch (Exception ex)
       {
-        Utilities.DisplayErrorMessage("Failed to download or extract SteamCMD.", $"Failed to download or extract SteamCMD: {ex.Message}");
+        UIUtilities.DisplayErrorMessage("Failed to download or extract SteamCMD.", $"Failed to download or extract SteamCMD: {ex.Message}");
         Log.Error($"FileIOManager - Failed to download or extract SteamCMD: {ex.Message}");
       }
     }
@@ -325,7 +325,7 @@ namespace ReforgerServerApp.Managers
       catch (HttpRequestException e)
       {
         Log.Error(e, "FileIOManager - Failed to check for updates");
-        Utilities.DisplayErrorMessage(
+        UIUtilities.DisplayErrorMessage(
             "Unable to check for updates, you may not be using the latest version of the Arma Reforger Dedicated Server Tool.\r\n" +
             "Please consider checking your internet connection.",
             e.Message);
@@ -447,7 +447,7 @@ namespace ReforgerServerApp.Managers
       }
       catch (Exception ex)
       {
-        Utilities.DisplayErrorMessage($"An error occurred while attempting to delete file '{path}'.", ex.Message);
+        UIUtilities.DisplayErrorMessage($"An error occurred while attempting to delete file '{path}'.", ex.Message);
         return false;
       }
     }

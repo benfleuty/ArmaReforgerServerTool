@@ -45,7 +45,7 @@ internal class ToolPropertiesManager
       {
         string path = Path.GetFullPath(m_toolPropertiesFile);
 
-        Utilities.DisplayErrorMessage(
+        UIUtilities.DisplayErrorMessage(
                 "Properties is malformed. Please check your formatting is valid JSON and try again.",
                 "Unable to parse properties. Temporarily loading default settings. " +
                 $"Delete the properties file at {path} and restart the application to permanently revert to default settings."

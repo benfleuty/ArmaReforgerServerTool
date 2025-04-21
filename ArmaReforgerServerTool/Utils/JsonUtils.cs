@@ -52,7 +52,7 @@ namespace ReforgerServerApp.Utils
         }
         catch (Exception ex)
         {
-          Utilities.DisplayErrorMessage("Unable to load value from configuration file.", ex.Message);
+          UIUtilities.DisplayErrorMessage("Unable to load value from configuration file.", ex.Message);
           return default;
         }
       }
@@ -189,7 +189,7 @@ namespace ReforgerServerApp.Utils
               break;
           }
         }
-        return new Rcon(address, port, password, Utilities.StringToEnum<RconPermission>(permission),
+        return new Rcon(address, port, password, CoreUtilities.StringToEnum<RconPermission>(permission),
             blacklist, whitelist, maxClients);
       }
 
@@ -201,7 +201,7 @@ namespace ReforgerServerApp.Utils
           writer.WriteString(nameof(Rcon.address), value.address);
           writer.WriteNumber(nameof(Rcon.port), value.port);
           writer.WriteString(nameof(Rcon.password), value.password);
-          writer.WriteString(nameof(Rcon.permission), Utilities.RconPermissionToString(value.permission));
+          writer.WriteString(nameof(Rcon.permission), CoreUtilities.RconPermissionToString(value.permission));
           writer.WritePropertyName(nameof(Rcon.blacklist));
           writer.WriteStartArray();
           foreach (string item in value.blacklist)

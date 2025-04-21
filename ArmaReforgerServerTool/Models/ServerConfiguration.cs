@@ -362,7 +362,7 @@ namespace ReforgerServerApp
     /// <returns>JSON string representation of the Server Configuration</returns>
     public string AsJsonString()
     {
-      return Utilities.GetFormattedJsonString(root, new JsonUtils.ModConverter(), new JsonUtils.OperatingConditionalConverter());
+      return CoreUtilities.GetFormattedJsonString(root, new JsonUtils.ModConverter(), new JsonUtils.OperatingConditionalConverter());
     }
 
     /// <summary>
@@ -371,7 +371,7 @@ namespace ReforgerServerApp
     /// <returns>JSON string representation of the Server Configuration's Mods</returns>
     public string ModsAsJsonString()
     {
-      return Utilities.GetFormattedJsonString(root.game.mods, new JsonUtils.ModConverter());
+      return CoreUtilities.GetFormattedJsonString(root.game.mods, new JsonUtils.ModConverter());
     }
 
     /// <summary>
@@ -380,7 +380,7 @@ namespace ReforgerServerApp
     /// <returns>JSON string representation of the Server Configuration's Mission Header</returns>
     public string MissionHeaderAsJsonString()
     {
-      return Utilities.GetFormattedJsonString(root.game.gameProperties.missionHeader);
+      return CoreUtilities.GetFormattedJsonString(root.game.gameProperties.missionHeader);
     }
 
     /// <summary>
@@ -389,7 +389,7 @@ namespace ReforgerServerApp
     /// <param name="json">to convert into the Server Configuration</param>
     public void SetServerConfigurationFromJson(string json)
     {
-      root = Utilities.GetServerConfigFromJson(json, new JsonUtils.ModConverter());
+      root = Root.GetServerConfigFromJson(json, new JsonUtils.ModConverter());
     }
 
     /// <summary>
@@ -404,7 +404,7 @@ namespace ReforgerServerApp
       }
       catch
       {
-        Utilities.DisplayErrorMessage("The mission header is malformed. Please check your formatting is valid JSON and try again.",
+        UIUtilities.DisplayErrorMessage("The mission header is malformed. Please check your formatting is valid JSON and try again.",
             "Unable to parse Mission Header.");
       }
     }

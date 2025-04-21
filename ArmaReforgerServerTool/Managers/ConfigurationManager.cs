@@ -136,7 +136,7 @@ namespace ReforgerServerApp
         m_serverParamsDictionary["rconBlacklist"].ParameterValue = m_serverConfig.root.rcon.blacklist;
 
         ((ServerParameterSelect)m_serverParamsDictionary["rconPermission"])
-            .ParameterValueSelection(Utilities.RconPermissionToString(m_serverConfig.root.rcon.permission));
+            .ParameterValueSelection(CoreUtilities.RconPermissionToString(m_serverConfig.root.rcon.permission));
 
         m_serverParamsDictionary["passwordAdmin"].ParameterValue = m_serverConfig.root.game.passwordAdmin!;
         m_serverParamsDictionary["name"].ParameterValue = m_serverConfig.root.game.name!;
@@ -202,7 +202,7 @@ namespace ReforgerServerApp
       catch (Exception e)
       {
         Log.Debug(e, "ConfigurationManager - Failed to read config file");
-        Utilities.DisplayErrorMessage($"An error occurred while attempting to load the configuration file.\r\n" +
+        UIUtilities.DisplayErrorMessage($"An error occurred while attempting to load the configuration file.\r\n" +
         $"It may have been created for an earlier version.\r\n" +
         $"The configuration has not been loaded.", e.Message);
       }
@@ -233,12 +233,12 @@ namespace ReforgerServerApp
       {
         m_serverParamsDictionary["rconPermission"].Invoke(new Action(() =>
         {
-          m_serverConfig.root.rcon.permission = Utilities.StringToEnum<RconPermission>((string)m_serverParamsDictionary["rconPermission"].ParameterValue);
+          m_serverConfig.root.rcon.permission = CoreUtilities.StringToEnum<RconPermission>((string)m_serverParamsDictionary["rconPermission"].ParameterValue);
         }));
       }
       else
       {
-        m_serverConfig.root.rcon.permission = Utilities.StringToEnum<RconPermission>((string)m_serverParamsDictionary["rconPermission"].ParameterValue);
+        m_serverConfig.root.rcon.permission = CoreUtilities.StringToEnum<RconPermission>((string)m_serverParamsDictionary["rconPermission"].ParameterValue);
       }
 
       m_serverConfig.root.rcon.maxClients = Convert.ToInt32(m_serverParamsDictionary["rconMaxClients"].ParameterValue);
@@ -261,7 +261,7 @@ namespace ReforgerServerApp
       m_serverConfig.root.game.mods = m_enabledMods.ToArray();
       m_serverConfig.root.game.modsRequiredByDefault = (bool)m_serverParamsDictionary["modsRequiredByDefault"].ParameterValue;
 
-      m_serverConfig.root.game.supportedPlatforms = Utilities.GetSupportedPlatforms(m_serverConfig.root.game.crossPlatform,
+      m_serverConfig.root.game.supportedPlatforms = CoreUtilities.GetSupportedPlatforms(m_serverConfig.root.game.crossPlatform,
                                                      (bool)m_serverParamsDictionary["supportedPlatformXbox"].ParameterValue,
                                                      (bool)m_serverParamsDictionary["supportedPlatformPSN"].ParameterValue);
 
@@ -338,15 +338,16 @@ namespace ReforgerServerApp
     }
 
     /// <summary>
-    /// Convenience method for alphabetising both the Available mods and Enable mods lists
+    /// Convenience method for alphabetising the Available mods list
     /// </summary>
     public void AlphabetiseModLists()
     {
-      if (!Utilities.IsSorted(m_availableMods))
+      List<Mod> mods = m_availableMods.ToList();
+      if (!CoreUtilities.IsModListSorted(mods))
       {
-        var tempAvailableMods = Utilities.AlphabetiseModList(m_availableMods);
+        CoreUtilities.AlphabetiseModList(mods);
         m_availableMods.Clear();
-        foreach (Mod mod in tempAvailableMods) { m_availableMods.Add(mod); }
+        mods.ForEach(m => m_availableMods.Add(m));
       }
     }
 
